@@ -24,9 +24,15 @@
 1. Tests, always. Why I did not implemented tests? Because I am sure there is still things to be done before automate it. One day I will, I promise.
 1. UI. I am not the best in UI coding but this is ugly AF.
 
+## TODO
+1. It is only tested in a old device.
+1. Notification system is still not done, but it will be easy to do since all calls are separated.
+1. Is it the right way to use retrofit? Not sure.
+1. Clean and refactor some classes.
+
 ## Challenges
 1. Learn a little bit of Retrofit (in all  my projects I implemented HTTP requests or I didn`t work on network)
-1. Persist data in the internet without paying
+1. Persist data in the internet without paying (for sure, this IS the big issue)
 1. I needed to update my sample codes, since some stuff was not right!
 
 
