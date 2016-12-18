@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * made by viniciushisao
  *
  * Pattern to make your log template
- * Log.d("$CLASS_NAME$:$METHOD_NAME$:$LINE$ $END$");
+ * Log.d("$CLASS_NAME$:$METHOD_NAME$:$LINE$ " $END$);
  */
 
 public class Log {

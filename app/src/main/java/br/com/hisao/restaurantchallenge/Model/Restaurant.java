@@ -12,12 +12,19 @@ public class Restaurant {
         this.name = name;
         this.address = address;
         this.imageUrl = imageUrl;
+        this.votes = 0;
     }
 
     @Override
     public String toString() {
         return "id:" + this.id + " name:" + this.name + " address:" + this.address + " imageUrl:" + this.imageUrl;
     }
+
+    public void setVotes(int ammount){ this.votes = ammount;}
+
+    public void incrementVotes(int ammount){ this.votes += ammount;}
+
+    public int getVotes(){ return this.votes;}
 
     public String getId() {
         return id;
@@ -55,6 +62,7 @@ public class Restaurant {
     private String name;
     private String address;
     private String imageUrl;
+    private int votes;
 
 }
 
