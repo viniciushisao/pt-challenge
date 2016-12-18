@@ -23,5 +23,10 @@
 1. Tests, always.
 1. UI. I am not the best in UI coding but this is ugly AF.
 
+## Challenges
+1. Learn a little bit of Retrofit (in all  my projects I implemented HTTP requests or I didn`t work on network)
+1. Persist data in the internet without paying
+1. I needed to update my sample codes, since some stuff was not right!
+
 
 
