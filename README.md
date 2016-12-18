@@ -7,6 +7,7 @@
 
 ## Plataform and language
 1. Android plataform. 
+1. To run it, do it in [Android Studio](https://developer.android.com/studio/index.html) and let it do all the stuff (gradle, java version and etc)
 1. Minimum requirements:
   1. MinSdkVersion 19
   1. GPS
@@ -20,7 +21,7 @@
 1. I used as reference the [sample codes](https://github.com/viniciushisao/android_classes) I have when I am teaching Android. 
 
 ## Need to improve
-1. Tests, always.
+1. Tests, always. Why I did not implemented tests? Because I am sure there is still things to be done before automate it. One day I will, I promise.
 1. UI. I am not the best in UI coding but this is ugly AF.
 
 ## Challenges
