@@ -17,6 +17,7 @@
 1. It grabs your phone ID so I can say you are unique
 1. It works without **ANY CONFIGURATION**. YESSSSS
 1. Another goal is to make it work **WITHOUT MONEY**. No paid server nor databases.
+1. I used as reference the [sample codes](https://github.com/viniciushisao/android_classes) I have when I am teaching Android. 
 
 ## Need to improve
 1. Tests, always.
