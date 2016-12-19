@@ -5,22 +5,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/img_restaurant"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <LinearLayout
-            android:layout_weight="3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_weight="0.2">
+
+            <ImageView
+                android:id="@+id/img_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.6"
             android:orientation="vertical">
 
             <TextView
@@ -41,17 +48,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:id="@+id/ll_vote"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_weight="0.2"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:text="VOTE"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -61,7 +67,6 @@
                 android:id="@+id/tv_votes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:text="votes: 20"
                 android:textColor="#000000" />
         </LinearLayout>

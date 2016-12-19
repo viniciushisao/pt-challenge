@@ -60,7 +60,7 @@ public class LoadRestaurants {
 
             @Override
             public void onFailure(Call<SearchResponse> call, Throwable t) {
-                Log.d("MainActivity:onFailure:138 " + t.getMessage());
+                Log.d("LoadRestaurants:onFailure:63 " + t.getMessage());
                 restaurantCallback.onError(t.getMessage());
             }
         };

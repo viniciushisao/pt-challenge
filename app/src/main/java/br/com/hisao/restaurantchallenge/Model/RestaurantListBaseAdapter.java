@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import br.com.hisao.restaurantchallenge.MainActivity;
 import br.com.hisao.restaurantchallenge.R;
 
 /**
@@ -26,7 +27,7 @@ public class RestaurantListBaseAdapter extends BaseAdapter {
     private ArrayList<Restaurant> restaurantArrayList;
     private Context context;
 
-    public RestaurantListBaseAdapter(ArrayList<Restaurant> restaurantArrayList, Context context){
+    public RestaurantListBaseAdapter(ArrayList<Restaurant> restaurantArrayList, MainActivity context){
         this.restaurantArrayList = restaurantArrayList;
         this.context = context;
     }
@@ -78,6 +79,7 @@ public class RestaurantListBaseAdapter extends BaseAdapter {
                             public void onClick(DialogInterface dialog, int which) {
                                 Vote vote = new Vote(restaurant.getId());
                                 Votes.getInstance().persistVote(vote);
+                                ((MainActivity)context).loadDataIntoUI();
                             }
                         })
                         .setNegativeButton("I don't know", new DialogInterface.OnClickListener() {

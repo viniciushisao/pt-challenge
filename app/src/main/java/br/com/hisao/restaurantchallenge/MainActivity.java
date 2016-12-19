@@ -3,9 +3,11 @@ package br.com.hisao.restaurantchallenge;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -47,12 +49,14 @@ public class MainActivity extends AppCompatActivity {
         YelpAPIFactory apiFactory = new YelpAPIFactory("lWuDsW3aIGmVT3alTW7XmQ", "QTrQHUOpGVZwSfTBEa5hUFzhqCA", "bczWgEjYIFy8PH9NKaZWOIAmk4yq6pVK", "pzKC6jaGTCCtt_XoM46KGsFpzL8");
         yelpAPI = apiFactory.createAPI();
 
-        loadDataIntoUI();
+
     }
 
-    private void loadLocation(final LocationCallback locationCallback) {
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M) && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{
@@ -62,14 +66,26 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MainActivity:loadLocation:82 YOU NEED PERMISSON");
             return;
         }
-        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+        loadDataIntoUI();
+    }
 
-            private boolean firstTime = true;
+    boolean firstTime = true;
+
+    private void loadLocation(final LocationCallback locationCallback) {
+
+        firstTime = true;
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M) && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("MainActivity:loadLocation:82 YOU NEED PERMISSON");
+            return;
+        }
+
+        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        final LocationListener locationListener = new LocationListener() {
 
             @Override
             public void onLocationChanged(Location location) {
-
+                Log.d("MainActivity:onLocationChanged:88 ");
                 if (firstTime) {
                     Log.d("MainActivity:onLocationChanged:90 ");
                     locationCallback.onDone(location);
@@ -79,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
+
             }
 
             @Override
@@ -90,14 +107,33 @@ public class MainActivity extends AppCompatActivity {
             public void onProviderDisabled(String s) {
                 Log.d("MainActivity:onProviderDisabled:106 ");
             }
-
+        };
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        mLocationManager.addGpsStatusListener(new GpsStatus.Listener() {
+            @Override
+            public void onGpsStatusChanged(int i) {
+                Log.d("MainActivity:onGpsStatusChanged:115 " + i);
+                switch (i) {
+                    case LocationProvider.OUT_OF_SERVICE:
+                    case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                       case GpsStatus.GPS_EVENT_STOPPED:
+                        Log.e("MainActivity:onStatusChanged:101 " + i);
+                        Location location = new Location("");
+                        location.setLatitude(37.7577);
+                        location.setLongitude(-122.4376);
+                        firstTime = false;
+                        locationCallback.onDone(location);
+                        break;
+                }
+            }
         });
     }
 
-    private void loadDataIntoUI() {
+    public void loadDataIntoUI() {
 
         llLoading.setVisibility(View.VISIBLE);
         lstRestaurants.setVisibility(View.GONE);
+        Log.d("MainActivity:loadDataIntoUI:138 ");
 
         final LoadVotesCallback loadVotesCallback = new LoadVotesCallback() {
             @Override
@@ -105,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity:onDone:117 ");
                 lstRestaurants.setVisibility(View.VISIBLE);
                 llLoading.setVisibility(View.GONE);
-                lstRestaurants.setAdapter(new RestaurantListBaseAdapter(MainActivity.restaurantArrayList, getApplicationContext()));
+                lstRestaurants.setAdapter(new RestaurantListBaseAdapter(MainActivity.restaurantArrayList, MainActivity.this));
             }
 
             @Override

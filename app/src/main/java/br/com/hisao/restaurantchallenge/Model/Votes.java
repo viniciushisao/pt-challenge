@@ -32,7 +32,6 @@ public class Votes {
     private Votes(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://cache-aws-us-east-1.iron.io/1/projects/58559c692176810007201121/caches/")
-
                 .build();
         ironIO = retrofit.create(IronIO.class);
         voteArrayList = new ArrayList<>();
@@ -124,8 +123,6 @@ public class Votes {
             }
         });
     }
-
-
 }
 
 interface IronIO {
