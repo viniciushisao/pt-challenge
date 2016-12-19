@@ -9,7 +9,7 @@
 1. Android plataform. 
 1. To run it, do it in [Android Studio](https://developer.android.com/studio/index.html) and let it do all the stuff (gradle, java version and etc)
 1. Minimum requirements:
-  1. MinSdkVersion 19
+  1. MinSdkVersion 19 (So the old devices is almost guarateed)
   1. GPS
   1. Internet connection
 
@@ -22,18 +22,19 @@
 ## Need to improve
 1. Tests, always. Why I did not implemented tests? Because I am sure there is still things to be done before automate it. One day I will, I promise.
 1. UI. I am not the best in UI coding but this is ugly AF.
+1. Is it the right way to use retrofit? Not sure.
 
 ## TODO
-1. It is only tested in a old device.
-1. Notification system is still not done, but it will be easy to do since all calls are separated.
-1. Is it the right way to use retrofit? Not sure.
+1. Tests. Espresso? 
+1. It is only tested in a old device. 
+1. Notification system is still not done, but it will be easy to do since all calls are separated. Implement push notifications.
+1. Make web service to remove all not valid votes.
 1. Clean and refactor some classes.
-1. Key value is extremaly hard and it shows off not eficient. Firebase? 
+1. Key value is extremaly hard and it is not eficient at all. Firebase? 
+1. **REFACTOR CODE**
 
 ## Challenges
 1. Learn a little bit of Retrofit (in all  my projects I implemented HTTP requests or I didn`t work on network)
 1. Persist data in the internet without paying AND save on a server that is only key value.
 1. I needed to update my sample codes, since some stuff was not right!
-
-
-
+1. I did it only in 2 days and I am pretty happy with results.
