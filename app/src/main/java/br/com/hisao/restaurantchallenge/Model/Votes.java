@@ -69,6 +69,8 @@ public class Votes {
                     String values = jsonObject.getString("value");
                     String[] tokens = values.split(TOKEN);
 
+                    voteArrayList.clear();
+
                     for (String s : tokens){
                         if (s != null && s.length() > 0){
                             Vote v = new Vote(s,true);
