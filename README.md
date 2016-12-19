@@ -15,9 +15,8 @@
 
 ## Highlights
 1. It has some limitations due it stores data in a free server and the data is KEY VALUE format. It was a big challenge to make it work properly.
-1. It grabs your phone ID so I can say you are unique
 1. It works without **ANY CONFIGURATION**. YESSSSS
-1. Another goal is to make it work **WITHOUT MONEY**. No paid server nor databases.
+1. Another goal is to make it work **WITHOUT MONEY** and ina KEY VALUE format. It was a big challenge and. No paid server nor databases.
 1. I used as reference the [sample codes](https://github.com/viniciushisao/android_classes) I have when I am teaching Android. 
 
 ## Need to improve
@@ -29,10 +28,11 @@
 1. Notification system is still not done, but it will be easy to do since all calls are separated.
 1. Is it the right way to use retrofit? Not sure.
 1. Clean and refactor some classes.
+1. Key value is extremaly hard and it shows off not eficient. Firebase? 
 
 ## Challenges
 1. Learn a little bit of Retrofit (in all  my projects I implemented HTTP requests or I didn`t work on network)
-1. Persist data in the internet without paying (for sure, this IS the big issue)
+1. Persist data in the internet without paying AND save on a server that is only key value.
 1. I needed to update my sample codes, since some stuff was not right!
 
 
