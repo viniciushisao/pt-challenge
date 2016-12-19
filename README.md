@@ -18,6 +18,7 @@
 1. It works without **ANY CONFIGURATION**. YESSSSS
 1. Another goal is to make it work **WITHOUT MONEY** and ina KEY VALUE format. It was a big challenge and. No paid server nor databases.
 1. I used as reference the [sample codes](https://github.com/viniciushisao/android_classes) I have when I am teaching Android. 
+1. The code is supposed to work for **1 week**. After that, the free subscription will fail.
 
 ## Need to improve
 1. Tests, always. Why I did not implemented tests? Because I am sure there is still things to be done before automate it. One day I will, I promise.
