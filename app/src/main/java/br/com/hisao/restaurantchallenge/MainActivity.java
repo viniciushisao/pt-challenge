@@ -110,27 +110,19 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        final LocationListener locationListenerTimeOut = new TimeoutableLocationListener(3000)
+        final LocationListener locationListenerTimeOut = new TimeoutableLocationListener(mLocationManager, 3000, new TimeoutableLocationListener.TimeoutLisener() {
+            @Override
+            public void onTimeouted(LocationListener sender) {
+                Log.e("MainActivity:onStatusChanged:101 ");
+                Location location = new Location("");
+                location.setLatitude(37.7577);
+                location.setLongitude(-122.4376);
+                firstTime = false;
+                locationCallback.onDone(location);
+            }
+        });
 
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-//        mLocationManager.addGpsStatusListener(new GpsStatus.Listener() {
-//            @Override
-//            public void onGpsStatusChanged(int i) {
-//                Log.d("MainActivity:onGpsStatusChanged:115 " + i);
-//                switch (i) {
-//                    case LocationProvider.OUT_OF_SERVICE:
-//                    case LocationProvider.TEMPORARILY_UNAVAILABLE:
-//                       case GpsStatus.GPS_EVENT_STOPPED:
-//                        Log.e("MainActivity:onStatusChanged:101 " + i);
-//                        Location location = new Location("");
-//                        location.setLatitude(37.7577);
-//                        location.setLongitude(-122.4376);
-//                        firstTime = false;
-//                        locationCallback.onDone(location);
-//                        break;
-//                }
-//            }
-//        });
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListenerTimeOut);
     }
 
     public void loadDataIntoUI() {
