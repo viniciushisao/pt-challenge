@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import br.com.hisao.restaurantchallenge.Model.LoadRestaurants;
 import br.com.hisao.restaurantchallenge.Model.Restaurant;
 import br.com.hisao.restaurantchallenge.Model.RestaurantListBaseAdapter;
+import br.com.hisao.restaurantchallenge.Model.TimeoutableLocationListener;
 import br.com.hisao.restaurantchallenge.Model.Votes;
 import br.com.hisao.restaurantchallenge.Util.Log;
 
@@ -108,25 +109,28 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity:onProviderDisabled:106 ");
             }
         };
+
+        final LocationListener locationListenerTimeOut = new TimeoutableLocationListener(3000)
+
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        mLocationManager.addGpsStatusListener(new GpsStatus.Listener() {
-            @Override
-            public void onGpsStatusChanged(int i) {
-                Log.d("MainActivity:onGpsStatusChanged:115 " + i);
-                switch (i) {
-                    case LocationProvider.OUT_OF_SERVICE:
-                    case LocationProvider.TEMPORARILY_UNAVAILABLE:
-                       case GpsStatus.GPS_EVENT_STOPPED:
-                        Log.e("MainActivity:onStatusChanged:101 " + i);
-                        Location location = new Location("");
-                        location.setLatitude(37.7577);
-                        location.setLongitude(-122.4376);
-                        firstTime = false;
-                        locationCallback.onDone(location);
-                        break;
-                }
-            }
-        });
+//        mLocationManager.addGpsStatusListener(new GpsStatus.Listener() {
+//            @Override
+//            public void onGpsStatusChanged(int i) {
+//                Log.d("MainActivity:onGpsStatusChanged:115 " + i);
+//                switch (i) {
+//                    case LocationProvider.OUT_OF_SERVICE:
+//                    case LocationProvider.TEMPORARILY_UNAVAILABLE:
+//                       case GpsStatus.GPS_EVENT_STOPPED:
+//                        Log.e("MainActivity:onStatusChanged:101 " + i);
+//                        Location location = new Location("");
+//                        location.setLatitude(37.7577);
+//                        location.setLongitude(-122.4376);
+//                        firstTime = false;
+//                        locationCallback.onDone(location);
+//                        break;
+//                }
+//            }
+//        });
     }
 
     public void loadDataIntoUI() {

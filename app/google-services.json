@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "880142201579",
+    "firebase_url": "https://votes-372ef.firebaseio.com",
+    "project_id": "votes-372ef",
+    "storage_bucket": "votes-372ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880142201579:android:df728f6e33e4e1fa",
+        "android_client_info": {
+          "package_name": "br.com.hisao.restaurantchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880142201579-6c15pglr42kjf682m4d01dn8lmlt9rc7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Qy1lF5b11ouZDmqrQATKaLTjWmPGQe8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
