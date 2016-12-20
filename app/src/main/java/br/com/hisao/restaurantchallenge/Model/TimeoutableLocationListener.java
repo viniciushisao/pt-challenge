@@ -16,16 +16,19 @@ import android.os.Bundle;
 public class TimeoutableLocationListener implements LocationListener {
     protected Timer timerTimeout = new Timer();
     protected LocationManager locaMan = null;
+    protected TimeoutLisener timeoutLisener;
+
 
     public TimeoutableLocationListener(LocationManager locaMan, long timeOutMS,
                                        final TimeoutLisener timeoutListener) {
         this.locaMan = locaMan;
-        timerTimeout.schedule(new TimerTask() {
+        this.timeoutLisener = timeoutListener;
+        this.timerTimeout.schedule(new TimerTask() {
 
             @Override
             public void run() {
                 if (timeoutListener != null) {
-                    timeoutListener.onTimeouted(TimeoutableLocationListener.this);
+                    timeoutListener.onLocationChanged(null);
                 }
                 stopLocationUpdateAndTimer();
             }
@@ -35,6 +38,10 @@ public class TimeoutableLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+
+        if (this.timeoutLisener != null) {
+            this.timeoutLisener.onLocationChanged(location);
+        }
         stopLocationUpdateAndTimer();
     }
 
@@ -51,13 +58,16 @@ public class TimeoutableLocationListener implements LocationListener {
     }
 
     private void stopLocationUpdateAndTimer() {
-        locaMan.removeUpdates(this);
-        timerTimeout.cancel();
-        timerTimeout.purge();
-        timerTimeout = null;
+        if (locaMan != null)
+            locaMan.removeUpdates(this);
+        if (timerTimeout != null) {
+            timerTimeout.cancel();
+            timerTimeout.purge();
+            timerTimeout = null;
+        }
     }
 
     public interface TimeoutLisener {
-        void onTimeouted(LocationListener sender);
+        void onLocationChanged(Location location);
     }
 }

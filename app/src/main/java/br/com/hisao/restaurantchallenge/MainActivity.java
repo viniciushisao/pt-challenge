@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
@@ -110,13 +111,24 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        final LocationListener locationListenerTimeOut = new TimeoutableLocationListener(mLocationManager, 3000, new TimeoutableLocationListener.TimeoutLisener() {
+        final LocationListener locationListenerTimeOut = new TimeoutableLocationListener(mLocationManager, 10000, new TimeoutableLocationListener.TimeoutLisener() {
             @Override
-            public void onTimeouted(LocationListener sender) {
-                Log.e("MainActivity:onStatusChanged:101 ");
-                Location location = new Location("");
-                location.setLatitude(37.7577);
-                location.setLongitude(-122.4376);
+            public void onLocationChanged(Location location) {
+                if (location == null) {
+                    Log.e("MainActivity:onStatusChanged:101 ");
+                    location = new Location("");
+                    location.setLatitude(37.7577);
+                    location.setLongitude(-122.4376);
+
+                    runOnUiThread(new Runnable(){
+
+                        @Override
+                        public void run(){
+                            Toast.makeText(getApplicationContext(), "GPS failed. You are in San Francisco!", Toast.LENGTH_LONG);
+                        }
+                    });
+
+                }
                 firstTime = false;
                 locationCallback.onDone(location);
             }
